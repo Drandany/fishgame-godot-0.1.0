@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=4 uid="uid://dd61uswctg3aa"]
+
+[ext_resource type="Script" path="res://maps/Map.gd" id="1"]
+[ext_resource type="TileSet" uid="uid://bnfbtbiivys4f" path="res://assets/tilesets/tileset.tres" id="2"]
+[ext_resource type="PackedScene" path="res://pickups/Gun.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://objects/Seaweed.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://pickups/Sword.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dks6de3wwqnuy" path="res://maps/StaticBackground.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://objects/Barnacles.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://objects/TimedGeneratorFlat.tscn" id="9"]
+
+[node name="Map1" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Environment" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAABcAAAACAAQAAAABABcAAAACAAQAAAACABcAAAACAAQAAAADABcAAAACAAQAAAAEABcAAAACAAQAAAAFABcAAAACAAQAAAAGABcAAAACAAQAAAAHABcAAAACAAQAAAAIABcAAAACAAQAAAAJABcAAAACAAQAAAAKABcAAAACAAQAAAALABcAAAACAAQAAAAMABcAAAACAAQAAAANABcAAAACAAQAAAAOABcAAAACAAQAAAAPABcAAAACAAQAAAAQABcAAAACAAQAAAARABcAAAACAAQAAAASABcAAAACAAQAAAATABcAAAACAAQAAAAUABcAAAACAAQAAAAVABcAAAACAAQAAAAWABcAAAACAAQAAAAXABcAAAACAAQAAAAYABcAAAACAAQAAAAZABcAAAACAAQAAAAaABcAAAACAAQAAAAbABcAAAACAAQAAAAcABcAAAACAAQAAAAdABcAAAACAAQAAAAeABcAAAACAAQAAAAfABcAAAACAAQAAAAgABcAAAACAAQAAAAhABcAAAACAAQAAAAiABcAAAACAAQAAAAjABcAAAACAAQAAAAkABcAAAACAAQAAAAlABcAAAACAAQAAAAmABcAAAACAAQAAAAnABcAAAACAAQAAAAoABcAAAACAAQAAAApABcAAAACAAQAAAAqABcAAAACAAQAAAArABcAAAACAAQAAAAsABcAAAACAAQAAAAEABQAAAAFAAQAAAAFABQAAAAFAAQAAAAGABQAAAAFAAQAAAABABIAAAAFAAQAAAACABIAAAAFAAQAAAADABIAAAAFAAQAAAAMABMAAAAFAAQAAAANABMAAAAFAAQAAAAOABMAAAAFAAQAAAALAA0AAAAFAAQAAAAMAA0AAAAFAAQAAAASABIAAAAFAAQAAAATABIAAAAFAAQAAAAUABIAAAAFAAQAAAAWABMAAAAFAAQAAAAXABMAAAAFAAQAAAAVABMAAAAFAAQAAAAbAA0AAAAFAAQAAAAbAA4AAAAFAAQAAAAcAA4AAAAFAAQAAAAdAA4AAAAFAAQAAAAeAA0AAAAFAAQAAAAdAA0AAAAFAAQAAAAcAA0AAAAFAAQAAAAeAA4AAAAFAAQAAAAVAAkAAAAFAAQAAAAWAAkAAAAFAAQAAAAXAAkAAAAFAAQAAAAYAAkAAAAFAAQAAAAYAAgAAAAFAAQAAAAXAAgAAAAFAAQAAAAWAAgAAAAFAAQAAAAVAAgAAAAFAAQAAAAZAAgAAAAFAAQAAAD8//r/AAAAAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wcAAAAAAAAAAAD7/wgAAAAAAAAAAAD7/wkAAAAAAAAAAAD7/woAAAAAAAAAAAD7/wsAAAAAAAAAAAD7/wwAAAAAAAAAAAD7/w0AAAAAAAAAAAD7/w4AAAAAAAAAAAD7/w8AAAAAAAAAAAD7/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD8/xIAAAAAAAAAAAD8/xMAAAAAAAAAAAD8/xQAAAAAAAAAAAD8/xUAAAAAAAAAAAD8/xYAAAAAAAAAAAD7/xYAAAAAAAAAAAD+//n/AAAAAAAAAAD///n/AAAAAAAAAAAAAPn/AAAAAAAAAAABAPn/AAAAAAAAAAACAPn/AAAAAAAAAAADAPn/AAAAAAAAAAAEAPn/AAAAAAAAAAAFAPn/AAAAAAAAAAAGAPn/AAAAAAAAAAAHAPn/AAAAAAAAAAAIAPn/AAAAAAAAAAAJAPn/AAAAAAAAAAAKAPn/AAAAAAAAAAALAPn/AAAAAAAAAAAMAPn/AAAAAAAAAAANAPn/AAAAAAAAAAAOAPn/AAAAAAAAAAAPAPn/AAAAAAAAAAAQAPn/AAAAAAAAAAARAPn/AAAAAAAAAAASAPn/AAAAAAAAAAATAPn/AAAAAAAAAAAUAPn/AAAAAAAAAAAVAPn/AAAAAAAAAAAWAPn/AAAAAAAAAAAXAPn/AAAAAAAAAAAYAPn/AAAAAAAAAAAZAPn/AAAAAAAAAAAaAPn/AAAAAAAAAAAbAPn/AAAAAAAAAAAcAPn/AAAAAAAAAAAdAPn/AAAAAAAAAAAeAPn/AAAAAAAAAAAfAPn/AAAAAAAAAAAgAPn/AAAAAAAAAAAhAPn/AAAAAAAAAAAiAPn/AAAAAAAAAAAjAPn/AAAAAAAAAAAkAPn/AAAAAAAAAAAlAPn/AAAAAAAAAAAmAPn/AAAAAAAAAAAnAPn/AAAAAAAAAAAoAPn/AAAAAAAAAAApAPn/AAAAAAAAAAAqAPn/AAAAAAAAAAArAPn/AAAAAAAAAAAsAPn/AAAAAAAAAAAtAPn/AAAAAAAAAAAuAPn/AAAAAAAAAAAvAPn/AAAAAAAAAAAwAPn/AAAAAAAAAAAxAPn/AAAAAAAAAAAyAPn/AAAAAAAAAAAzAPn/AAAAAAAAAAA0APn/AAAAAAAAAAA1APn/AAAAAAAAAAA2APn/AAAAAAAAAAA3APn/AAAAAAAAAAA4APn/AAAAAAAAAAA5APn/AAAAAAAAAAA6APn/AAAAAAAAAAA7APn/AAAAAAAAAAA7APr/AAAAAAAAAAAxAPr/AAAAAAAAAAAxAPv/AAAAAAAAAAAxAPz/AAAAAAAAAAAxAP3/AAAAAAAAAAAxAP7/AAAAAAAAAAAxAP//AAAAAAAAAAAyAAAAAAAAAAAAAAAyAAEAAAAAAAAAAAAyAAIAAAAAAAAAAAAyAAMAAAAAAAAAAAAyAAQAAAAAAAAAAAAyAAUAAAAAAAAAAAAyAAYAAAAAAAAAAAAyAAcAAAAAAAAAAAAyAAgAAAAAAAAAAAAyAAkAAAAAAAAAAAAyAAoAAAAAAAAAAAAyAAsAAAAAAAAAAAAyAAwAAAAAAAAAAAAyAA0AAAAAAAAAAAAyAA4AAAAAAAAAAAAyAA8AAAAAAAAAAAAyABAAAAAAAAAAAAAyABEAAAAAAAAAAAAyABIAAAAAAAAAAAAyABMAAAAAAAAAAAAyABQAAAAAAAAAAAAyABUAAAAAAAAAAAAxABYAAAAAAAAAAAAxABcAAAAAAAAAAAAxABgAAAAAAAAAAAA=")
+tile_set = ExtResource("2")
+
+[node name="OneWayPlatforms" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("2")
+
+[node name="Objects" type="Node2D" parent="."]
+position = Vector2(0, 760)
+
+[node name="TimedGenerator1" parent="Objects" instance=ExtResource("9")]
+position = Vector2(405, -150)
+pickup_scene = ExtResource("5")
+
+[node name="TimedGenerator2" parent="Objects" instance=ExtResource("9")]
+position = Vector2(900, -150)
+pickup_scene = ExtResource("5")
+
+[node name="TimedGenerator3" parent="Objects" instance=ExtResource("9")]
+position = Vector2(645, -540)
+pickup_scene = ExtResource("5")
+
+[node name="TimedGenerator4" parent="Objects" instance=ExtResource("9")]
+position = Vector2(120, -480)
+pickup_scene = ExtResource("3")
+
+[node name="TimedGenerator5" parent="Objects" instance=ExtResource("9")]
+position = Vector2(1260, -450)
+pickup_scene = ExtResource("3")
+
+[node name="TimedGenerator6" parent="Objects" instance=ExtResource("9")]
+position = Vector2(990, -690)
+pickup_scene = ExtResource("3")
+
+[node name="TimedGenerator7" parent="Objects" instance=ExtResource("9")]
+position = Vector2(300, -690)
+pickup_scene = ExtResource("3")
+
+[node name="Seaweed1" parent="Objects" instance=ExtResource("4")]
+position = Vector2(615, -180)
+
+[node name="Seaweed2" parent="Objects" instance=ExtResource("4")]
+position = Vector2(375, -330)
+
+[node name="Seaweed3" parent="Objects" instance=ExtResource("4")]
+position = Vector2(600, -510)
+
+[node name="Seaweed4" parent="Objects" instance=ExtResource("4")]
+position = Vector2(1155, -120)
+
+[node name="Seaweed5" parent="Objects" instance=ExtResource("4")]
+position = Vector2(75, -180)
+
+[node name="Seaweed6" parent="Objects" instance=ExtResource("4")]
+position = Vector2(75, -510)
+
+[node name="Seaweed7" parent="Objects" instance=ExtResource("4")]
+position = Vector2(765, -690)
+
+[node name="Seaweed8" parent="Objects" instance=ExtResource("4")]
+position = Vector2(1305, -450)
+
+[node name="Seaweed9" parent="Objects" instance=ExtResource("4")]
+position = Vector2(1065, -630)
+
+[node name="Barnacles" parent="Objects" instance=ExtResource("7")]
+position = Vector2(930, -330)
+
+[node name="Barnacles2" parent="Objects" instance=ExtResource("7")]
+position = Vector2(720, -150)
+
+[node name="Barnacles3" parent="Objects" instance=ExtResource("7")]
+position = Vector2(360, -690)
+
+[node name="Barnacles4" parent="Objects" instance=ExtResource("7")]
+position = Vector2(750, -480)
+
+[node name="Barnacles5" parent="Objects" instance=ExtResource("7")]
+position = Vector2(180, -120)
+
+[node name="Barnacles6" parent="Objects" instance=ExtResource("7")]
+position = Vector2(810, -720)
+
+[node name="PlayerStartPositions" type="Node2D" parent="."]
+position = Vector2(0, 760)
+
+[node name="Player1" type="Marker2D" parent="PlayerStartPositions"]
+position = Vector2(255, -150)
+
+[node name="Player2" type="Marker2D" parent="PlayerStartPositions"]
+position = Vector2(1080, -150)
+
+[node name="Player3" type="Marker2D" parent="PlayerStartPositions"]
+position = Vector2(420, -330)
+
+[node name="Player4" type="Marker2D" parent="PlayerStartPositions"]
+position = Vector2(900, -330)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6")]

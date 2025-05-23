@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dks6de3wwqnuy"]
+
+[ext_resource type="Texture2D" uid="uid://ddcfnbhlylr6e" path="res://assets/backgrounds/03.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dwbxtbgb02a8v" path="res://assets/backgrounds/04.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6i5f8ieodajf" path="res://assets/backgrounds/01.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cwv6fhipvwct2" path="res://assets/backgrounds/02.png" id="4"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = -100
+
+[node name="Sprite1" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3")
+centered = false
