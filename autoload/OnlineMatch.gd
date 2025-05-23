@@ -8,7 +8,8 @@ var max_players := 4
 var client_version := 'dev'
 
 # Nakama variables:
-var nakama_socket: NakamaSocket: set = _set_readonly_variable
+var _nakama_socket: NakamaSocket = null
+var nakama_socket: NakamaSocket: get = get_nakama_socket, set = _set_readonly_variable
 var my_session_id: String: get = get_my_session_id, set = _set_readonly_variable
 var match_id: String: get = get_match_id, set = _set_readonly_variable
 var matchmaker_ticket: String: get = get_matchmaker_ticket, set = _set_readonly_variable
@@ -100,6 +101,9 @@ static func unserialize_players(_players: Dictionary) -> Dictionary:
 func _set_readonly_variable(_value) -> void:
 	pass
 
+func get_nakama_socket() -> NakamaSocket:
+	return _nakama_socket
+
 func _set_nakama_socket(n_socket: NakamaSocket) -> void:
 	if nakama_socket == n_socket:
 		return
@@ -111,7 +115,7 @@ func _set_nakama_socket(n_socket: NakamaSocket) -> void:
 		nakama_socket.disconnect("received_match_presence", Callable(self, "_on_nakama_match_presence"))
 		nakama_socket.disconnect("received_matchmaker_matched", Callable(self, "_on_nakama_matchmaker_matched"))
 	
-	nakama_socket = n_socket
+	_nakama_socket = n_socket
 	if nakama_socket:
 		nakama_socket.connect("closed", Callable(self, "_on_nakama_closed"))
 		nakama_socket.connect("received_error", Callable(self, "_on_nakama_error"))

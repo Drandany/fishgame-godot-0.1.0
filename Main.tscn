@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bs28kx41ii2h7" path="res://Game.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dw7souvf1aucb" path="res://main/screens/MatchScreen.tscn" id="4"]
 [ext_resource type="Script" path="res://main/UILayer.gd" id="5"]
-[ext_resource type="PackedScene" path="res://main/screens/ReadyScreen.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dnup26xnqw4xi" path="res://main/screens/ReadyScreen.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://dova1krckrjd5" path="res://main/screens/TitleScreen.tscn" id="7"]
 [ext_resource type="FontFile" path="res://assets/fonts/monogram.tres" id="8"]
 [ext_resource type="Script" path="res://main/Music.gd" id="9"]
@@ -42,8 +42,6 @@ layout_mode = 1
 [node name="ConnectionScreen" parent="UILayer/Screens" instance=ExtResource("2")]
 visible = false
 layout_mode = 1
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="MatchScreen" parent="UILayer/Screens" instance=ExtResource("4")]
 visible = false
@@ -52,8 +50,6 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ReadyScreen" parent="UILayer/Screens" instance=ExtResource("6")]
 visible = false

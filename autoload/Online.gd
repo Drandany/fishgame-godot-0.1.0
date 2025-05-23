@@ -1,31 +1,38 @@
 extends Node
 
-# For developers to set from the outside, for example:
-#   Online.nakama_host = 'nakama.example.com'
-#   Online.nakama_scheme = 'https'
 var nakama_server_key: String = "defaultkey"
 var nakama_host: String = "gooseplayground.duckdns.org"
 var nakama_port: int = 7350
 var nakama_scheme: String = "http"
 
-# For other scripts to access:
+# Internal variables
 var _nakama_client: NakamaClient = null
-var nakama_client: NakamaClient: get = get_nakama_client, set = _set_readonly_variable
-var nakama_session: NakamaSession: set = set_nakama_session
-var nakama_socket: NakamaSocket: set = _set_readonly_variable
+var _nakama_socket: NakamaSocket = null
 
-# Internal variable for initializing the socket.
+# Public accessors
+var nakama_client: NakamaClient:
+	get = get_nakama_client,
+	set = _set_readonly_variable
+
+var nakama_session: NakamaSession:
+	set = set_nakama_session
+
+var nakama_socket: NakamaSocket:
+	get = get_nakama_socket,
+	set = _set_readonly_variable
+
+# Internal state
 var _nakama_socket_connecting := false
 
-signal session_changed (nakama_session)
-signal session_connected (nakama_session)
-signal socket_connected (nakama_socket)
+# Signals
+signal session_changed(nakama_session)
+signal session_connected(nakama_session)
+signal socket_connected(nakama_socket)
 
 func _set_readonly_variable(_value) -> void:
 	pass
 
 func _ready() -> void:
-	# Don't stop processing messages from Nakama when the game is paused.
 	Nakama.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func get_nakama_client() -> NakamaClient:
@@ -37,38 +44,41 @@ func get_nakama_client() -> NakamaClient:
 			nakama_scheme,
 			Nakama.DEFAULT_TIMEOUT,
 			NakamaLogger.LOG_LEVEL.ERROR)
-	
 	return _nakama_client
 
+func get_nakama_socket() -> NakamaSocket:
+	return _nakama_socket
+
 func set_nakama_session(_nakama_session: NakamaSession) -> void:
-	# Close out the old socket.
-	if nakama_socket:
-		nakama_socket.close()
-		nakama_socket = null
+	if _nakama_socket:
+		_nakama_socket.close()
+		_nakama_socket = null
 	
 	nakama_session = _nakama_session
-	
 	emit_signal("session_changed", nakama_session)
 	
 	if nakama_session and not nakama_session.is_exception() and not nakama_session.is_expired():
 		emit_signal("session_connected", nakama_session)
 
 func connect_nakama_socket() -> void:
-	if nakama_socket != null:
+	if _nakama_socket != null or _nakama_socket_connecting:
 		return
-	if _nakama_socket_connecting:
-		return
-	_nakama_socket_connecting = true
 	
+	_nakama_socket_connecting = true
 	var new_socket = Nakama.create_socket_from(nakama_client)
+	print("Connecting socket:", new_socket)
+	
 	await new_socket.connect_async(nakama_session)
-	nakama_socket = new_socket
+	print("Socket connected to host?", new_socket.is_connected_to_host())
+
+	_nakama_socket = new_socket
 	_nakama_socket_connecting = false
 	
-	if nakama_socket != null and nakama_socket.is_connected_to_host():
-		emit_signal("socket_connected", nakama_socket)
+	if _nakama_socket.is_connected_to_host():
+		print("Socket connected successfully.")
+		emit_signal("socket_connected", _nakama_socket)
 	else:
 		print("[Online.gd] Failed to connect Nakama socket.")
 
 func is_nakama_socket_connected() -> bool:
-	return nakama_socket != null && nakama_socket.is_connected_to_host()
+	return _nakama_socket != null and _nakama_socket.is_connected_to_host()
