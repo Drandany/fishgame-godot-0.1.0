@@ -29,11 +29,14 @@ func _show_screen(info: Dictionary = {}) -> void:
 	for session_id in players:
 		add_player(session_id, players[session_id]['username'])
 	
+	print("[ReadyScreen.gd] _show_screen called with match_id:", match_id)
 	if match_id:
 		match_id_container.visible = true
 		match_id_label.text = match_id
+		print("[ReadyScreen.gd] match_id_container set to VISIBLE with match_id:", match_id)
 	else:
 		match_id_container.visible = false
+		print("[ReadyScreen.gd] match_id_container set to HIDDEN")
 	
 	ready_button.grab_focus()
 

@@ -8,14 +8,13 @@ var max_players := 4
 var client_version := 'dev'
 
 # Nakama variables:
-var _nakama_socket: NakamaSocket = null
-var nakama_socket: NakamaSocket: get = get_nakama_socket, set = _set_readonly_variable
-var my_session_id: String: get = get_my_session_id, set = _set_readonly_variable
-var match_id: String: get = get_match_id, set = _set_readonly_variable
-var matchmaker_ticket: String: get = get_matchmaker_ticket, set = _set_readonly_variable
+var nakama_socket: NakamaSocket: get = get_nakama_socket
+var my_session_id: String: get = get_my_session_id
+var match_id: String: get = get_match_id
+var matchmaker_ticket: String: get = get_matchmaker_ticket
 
 # RPC variables:
-var my_peer_id: int: set = _set_readonly_variable
+var my_peer_id: int
 
 var players: Dictionary
 var _next_peer_id: int
@@ -28,7 +27,7 @@ enum MatchState {
 	READY = 4,
 	PLAYING = 5,
 }
-var match_state: int = MatchState.LOBBY: get = get_match_state, set = _set_readonly_variable
+var match_state: int = MatchState.LOBBY: get = get_match_state
 
 enum MatchMode {
 	NONE = 0,
@@ -36,7 +35,7 @@ enum MatchMode {
 	JOIN = 2,
 	MATCHMAKER = 3,
 }
-var match_mode: int = MatchMode.NONE: get = get_match_mode, set = _set_readonly_variable
+var match_mode: int = MatchMode.NONE: get = get_match_mode
 
 enum PlayerStatus {
 	CONNECTING = 0,
@@ -98,11 +97,8 @@ static func unserialize_players(_players: Dictionary) -> Dictionary:
 		result[key] = Player.from_dict(_players[key])
 	return result
 
-func _set_readonly_variable(_value) -> void:
-	pass
-
 func get_nakama_socket() -> NakamaSocket:
-	return _nakama_socket
+	return nakama_socket
 
 func _set_nakama_socket(n_socket: NakamaSocket) -> void:
 	if nakama_socket == n_socket:
@@ -115,7 +111,7 @@ func _set_nakama_socket(n_socket: NakamaSocket) -> void:
 		nakama_socket.disconnect("received_match_presence", Callable(self, "_on_nakama_match_presence"))
 		nakama_socket.disconnect("received_matchmaker_matched", Callable(self, "_on_nakama_matchmaker_matched"))
 	
-	_nakama_socket = n_socket
+	nakama_socket = n_socket
 	if nakama_socket:
 		nakama_socket.connect("closed", Callable(self, "_on_nakama_closed"))
 		nakama_socket.connect("received_error", Callable(self, "_on_nakama_error"))
@@ -399,13 +395,12 @@ func _on_nakama_matchmaker_matched(data: NakamaRTAPI.MatchmakerMatched) -> void:
 		_on_nakama_match_join(result)
 
 func _on_nakama_match_state(data: NakamaRTAPI.MatchData):
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(data.data)
-	var json_result = test_json_conv.get_data()
-	if json_result.error != OK:
+	var json = JSON.new()
+	var error = json.parse(data.data)
+	if error != OK:
 		return
-		
-	var content = json_result.result
+
+	var content = json.get_data()
 	if data.op_code == MatchOpCode.CUSTOM_RPC:
 		if content['peer_id'] == 0 or content['peer_id'] == my_peer_id:
 			var node = get_node(content['node_path'])

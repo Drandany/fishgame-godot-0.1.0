@@ -1,12 +1,11 @@
 res://default_env.tres
-res://Main.tscn
+res://main/screens/ReadyScreen.tscn
 res://assets/tilesets/tileset.tres
+res://autoload/OnlineMatch.gd
 res://autoload/Online.gd
+res://Main.tscn
 res://main/screens/TitleScreen.tscn
 res://main/screens/ConnectionScreen.tscn
 res://maps/Map1.tscn
 res://Game.tscn
 res://main/screens/MatchScreen.tscn
-res://Main.gd
-res://main/screens/ReadyScreen.tscn
-res://autoload/OnlineMatch.gd

@@ -10,16 +10,11 @@ var _nakama_client: NakamaClient = null
 var _nakama_socket: NakamaSocket = null
 
 # Public accessors
-var nakama_client: NakamaClient:
-	get = get_nakama_client,
-	set = _set_readonly_variable
+var nakama_client: NakamaClient: get = get_nakama_client
 
-var nakama_session: NakamaSession:
-	set = set_nakama_session
+var nakama_session: NakamaSession: set = set_nakama_session
 
-var nakama_socket: NakamaSocket:
-	get = get_nakama_socket,
-	set = _set_readonly_variable
+var nakama_socket: NakamaSocket: get = get_nakama_socket
 
 # Internal state
 var _nakama_socket_connecting := false
@@ -28,9 +23,6 @@ var _nakama_socket_connecting := false
 signal session_changed(nakama_session)
 signal session_connected(nakama_session)
 signal socket_connected(nakama_socket)
-
-func _set_readonly_variable(_value) -> void:
-	pass
 
 func _ready() -> void:
 	Nakama.process_mode = Node.PROCESS_MODE_ALWAYS

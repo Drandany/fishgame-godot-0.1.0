@@ -54,6 +54,10 @@ offset_bottom = 0.0
 [node name="ReadyScreen" parent="UILayer/Screens" instance=ExtResource("6")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="LeaderboardScreen" parent="UILayer/Screens" instance=ExtResource("14")]
 visible = false
