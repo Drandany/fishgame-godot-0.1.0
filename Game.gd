@@ -52,7 +52,7 @@ func _do_game_setup(players: Dictionary) -> void:
 		other_player.set_multiplayer_authority(player_id)
 		other_player.set_player_skin(player_id - 1)
 		other_player.set_player_name(players[player_id])
-		other_player.position = map.get_node("PlayerStartPositions/Player" + str(player_id)).position
+		other_player.global_position = map.get_node("PlayerStartPositions/Player" + str(player_id)).global_position
 		other_player.rotation = map.get_node("PlayerStartPositions/Player" + str(player_id)).rotation
 		other_player.connect("player_dead", Callable(self, "_on_player_dead").bind(player_id))
 		

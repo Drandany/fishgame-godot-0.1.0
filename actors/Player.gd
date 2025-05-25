@@ -306,4 +306,3 @@ func update_remote_player(_input_buffer: Dictionary, current_state: String, stat
 func _on_StateMachine_state_changed(state, info: Dictionary) -> void:
 	sync_forced = true
 	sync_state_info = info
-

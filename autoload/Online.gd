@@ -2,8 +2,8 @@ extends Node
 
 var nakama_server_key: String = "defaultkey"
 var nakama_host: String = "gooseplayground.duckdns.org"
-var nakama_port: int = 7350
-var nakama_scheme: String = "http"
+var nakama_port: int = 443
+var nakama_scheme: String = "https"
 
 # Internal variables
 var _nakama_client: NakamaClient = null
@@ -11,9 +11,7 @@ var _nakama_socket: NakamaSocket = null
 
 # Public accessors
 var nakama_client: NakamaClient: get = get_nakama_client
-
 var nakama_session: NakamaSession: set = set_nakama_session
-
 var nakama_socket: NakamaSocket: get = get_nakama_socket
 
 # Internal state
